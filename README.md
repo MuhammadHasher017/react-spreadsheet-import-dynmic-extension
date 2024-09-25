@@ -43,9 +43,9 @@ npm i react-spreadsheet-import
 Using the component: (it's up to you when the flow is open and what you do on submit with the imported data)
 
 ```tsx
-import { ReactSpreadsheetImport } from "react-spreadsheet-import";
+import { ReactSpreadsheetImportDynamicExtension } from "react-spreadsheet-import";
 
-<ReactSpreadsheetImport isOpen={isOpen} onClose={onClose} onSubmit={onSubmit} fields={fields} />
+<ReactSpreadsheetImportDynamicExtension isOpen={isOpen} onClose={onClose} onSubmit={onSubmit} fields={fields} />
 ```
 
 ## Required Props
@@ -111,7 +111,7 @@ The last step - validation step has 2 unique hooks that run only in that step wi
 Example:
 
 ```tsx
-<ReactSpreadsheetImport
+<ReactSpreadsheetImportDynamicExtension
   rowHook={(data, addError) => {
     // Validation
     if (data.name === "John") {
@@ -163,9 +163,9 @@ In rare case when you need to skip the beginning of the flow, you can start the 
 Example:
 
 ```tsx
-import { ReactSpreadsheetImport, StepType } from "react-spreadsheet-import";
+import { ReactSpreadsheetImportDynamicExtension, StepType } from "react-spreadsheet-import";
 
-<ReactSpreadsheetImport
+<ReactSpreadsheetImportDynamicExtension
   initialStepState={{
     type: StepType.matchColumns,
     data: [
@@ -222,7 +222,7 @@ There are 3 ways you can style the component:
 1.) Change theme colors globally
 
 ```jsx
-    <ReactSpreadsheetImport
+    <ReactSpreadsheetImportDynamicExtension
         {...mockRsiValues}
         isOpen={isOpen}
         onClose={onClose}
@@ -249,7 +249,7 @@ There are 3 ways you can style the component:
 2.) Change all components of the same type, like all Buttons, at the same time
 
 ```jsx
-<ReactSpreadsheetImport
+<ReactSpreadsheetImportDynamicExtension
   {...mockRsiValues}
   isOpen={isOpen}
   onClose={onClose}
@@ -273,7 +273,7 @@ There are 3 ways you can style the component:
  
 3.) Change components specifically in each Step.
 ```jsx
-    <ReactSpreadsheetImport
+    <ReactSpreadsheetImportDynamicExtension
         {...mockRsiValues}
         isOpen={isOpen}
         onClose={onClose}
@@ -300,7 +300,7 @@ Underneath we use Chakra-UI, you can send in a custom theme for us to apply. Rea
 You can change any text in the flow:
 
 ```tsx
-<ReactSpreadsheetImport
+<ReactSpreadsheetImportDynamicExtension
   translations={{
     uploadStep: {
       title: "Upload Employees",

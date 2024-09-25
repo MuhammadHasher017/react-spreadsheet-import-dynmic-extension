@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
 import { render, waitFor, screen } from "@testing-library/react"
 import { MatchColumnsStep } from "../MatchColumnsStep"
-import { defaultTheme, ReactSpreadsheetImport } from "../../../ReactSpreadsheetImport"
+import { defaultTheme, ReactSpreadsheetImportDynamicExtension } from "../../../ReactSpreadsheetImport"
 import { mockRsiValues } from "../../../stories/mockRsiValues"
 import { Providers } from "../../../components/Providers"
 import { ModalWrapper } from "../../../components/ModalWrapper"
@@ -780,7 +780,7 @@ describe("Match Columns general tests", () => {
       fields: mockRsiValues.fields.filter((field) => field.key === "name" || field.key === "age"),
     }
     render(
-      <ReactSpreadsheetImport
+      <ReactSpreadsheetImportDynamicExtension
         {...mockValues}
         matchColumnsStepHook={matchColumnsStepHook}
         initialStepState={{
@@ -812,7 +812,7 @@ describe("Match Columns general tests", () => {
       fields: mockRsiValues.fields.filter((field) => field.key === "name" || field.key === "age"),
     }
     render(
-      <ReactSpreadsheetImport
+      <ReactSpreadsheetImportDynamicExtension
         {...mockValues}
         matchColumnsStepHook={matchColumnsStepHook}
         initialStepState={{
@@ -846,7 +846,7 @@ describe("Match Columns general tests", () => {
     }
 
     render(
-      <ReactSpreadsheetImport
+      <ReactSpreadsheetImportDynamicExtension
         {...mockValues}
         matchColumnsStepHook={matchColumnsStepHook}
         initialStepState={{

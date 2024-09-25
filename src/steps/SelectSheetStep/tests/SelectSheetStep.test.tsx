@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
 import { render, waitFor, screen, fireEvent, act } from "@testing-library/react"
 import { SelectSheetStep } from "../SelectSheetStep"
-import { defaultTheme, ReactSpreadsheetImport } from "../../../ReactSpreadsheetImport"
+import { defaultTheme, ReactSpreadsheetImportDynamicExtension } from "../../../ReactSpreadsheetImport"
 import { mockRsiValues } from "../../../stories/mockRsiValues"
 import { Providers } from "../../../components/Providers"
 import { ModalWrapper } from "../../../components/ModalWrapper"
@@ -15,7 +15,7 @@ const SELECT_HEADER_TABLE_ENTRY_3 = "50"
 const ERROR_MESSAGE = "Something happened"
 
 test("Should render select sheet screen if multi-sheet excel file was uploaded", async () => {
-  render(<ReactSpreadsheetImport {...mockRsiValues} />)
+  render(<ReactSpreadsheetImportDynamicExtension {...mockRsiValues} />)
   const uploader = screen.getByTestId("rsi-dropzone")
   const data = readFileSync(__dirname + "/../../../../static/Workbook1.xlsx")
   fireEvent.drop(uploader, {
@@ -35,7 +35,7 @@ test("Should render select sheet screen if multi-sheet excel file was uploaded",
 })
 
 test("Should render select header screen with relevant data if single-sheet excel file was uploaded", async () => {
-  render(<ReactSpreadsheetImport {...mockRsiValues} />)
+  render(<ReactSpreadsheetImportDynamicExtension {...mockRsiValues} />)
   const uploader = screen.getByTestId("rsi-dropzone")
   const data = readFileSync(__dirname + "/../../../../static/Workbook2.xlsx")
   fireEvent.drop(uploader, {
@@ -90,7 +90,7 @@ test("Should show error toast if error is thrown in uploadStepHook", async () =>
     throw new Error(ERROR_MESSAGE)
     return undefined as any
   })
-  render(<ReactSpreadsheetImport {...mockRsiValues} uploadStepHook={uploadStepHook} />)
+  render(<ReactSpreadsheetImportDynamicExtension {...mockRsiValues} uploadStepHook={uploadStepHook} />)
   const uploader = screen.getByTestId("rsi-dropzone")
   const data = readFileSync(__dirname + "/../../../../static/Workbook1.xlsx")
   fireEvent.drop(uploader, {

@@ -1,4 +1,4 @@
-import { ReactSpreadsheetImport } from "../ReactSpreadsheetImport"
+import { ReactSpreadsheetImportDynamicExtension } from "../ReactSpreadsheetImport"
 import { Box, Link, Code, Button, useDisclosure } from "@chakra-ui/react"
 import { mockRsiValues } from "./mockRsiValues"
 import { useState } from "react"
@@ -22,7 +22,7 @@ export const Basic = () => {
       <Link href="./exampleFile.csv" border="2px solid #718096" p="8px" borderRadius="8px" download="exampleCSV">
         Download example file
       </Link>
-      <ReactSpreadsheetImport {...mockRsiValues} isOpen={isOpen} onClose={onClose} onSubmit={setData} />
+      <ReactSpreadsheetImportDynamicExtension {...mockRsiValues} isOpen={isOpen} onClose={onClose} onSubmit={setData} />
       {!!data && (
         <Box pt={64} display="flex" gap="8px" flexDirection="column">
           <b>Returned data (showing first 100 rows):</b>

@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
 import { render, waitFor, screen, fireEvent } from "@testing-library/react"
 import { SelectHeaderStep } from "../SelectHeaderStep"
-import { defaultTheme, ReactSpreadsheetImport } from "../../../ReactSpreadsheetImport"
+import { defaultTheme, ReactSpreadsheetImportDynamicExtension } from "../../../ReactSpreadsheetImport"
 import { mockRsiValues } from "../../../stories/mockRsiValues"
 import { Providers } from "../../../components/Providers"
 import { ModalWrapper } from "../../../components/ModalWrapper"
@@ -58,7 +58,7 @@ describe("Select header step tests", () => {
     const selectHeaderStepHook = jest.fn(async (headerValues, data) => {
       return { headerValues, data }
     })
-    render(<ReactSpreadsheetImport {...mockRsiValues} selectHeaderStepHook={selectHeaderStepHook} />)
+    render(<ReactSpreadsheetImportDynamicExtension {...mockRsiValues} selectHeaderStepHook={selectHeaderStepHook} />)
     const uploader = screen.getByTestId("rsi-dropzone")
     const data = readFileSync(__dirname + "/../../../../static/Workbook2.xlsx")
     fireEvent.drop(uploader, {
@@ -88,7 +88,7 @@ describe("Select header step tests", () => {
       return { headerValues: [MUTATED_HEADER, ...headerValues], data }
     })
     render(
-      <ReactSpreadsheetImport
+      <ReactSpreadsheetImportDynamicExtension
         {...mockRsiValues}
         selectHeaderStepHook={selectHeaderStepHook}
         initialStepState={{
@@ -117,7 +117,7 @@ describe("Select header step tests", () => {
       return undefined as any
     })
     render(
-      <ReactSpreadsheetImport
+      <ReactSpreadsheetImportDynamicExtension
         {...mockRsiValues}
         selectHeaderStepHook={selectHeaderStepHook}
         initialStepState={{
@@ -142,7 +142,7 @@ describe("Select header step tests", () => {
     const file = new File([RAW_DATE], "test.csv", {
       type: "text/csv",
     })
-    render(<ReactSpreadsheetImport {...mockRsiValues} dateFormat="yyyy/mm/dd" parseRaw={true} />)
+    render(<ReactSpreadsheetImportDynamicExtension {...mockRsiValues} dateFormat="yyyy/mm/dd" parseRaw={true} />)
 
     const uploader = screen.getByTestId("rsi-dropzone")
     fireEvent.drop(uploader, {
@@ -157,7 +157,7 @@ describe("Select header step tests", () => {
     const file = new File([RAW_DATE], "test.csv", {
       type: "text/csv",
     })
-    render(<ReactSpreadsheetImport {...mockRsiValues} dateFormat="yyyy/mm/dd" parseRaw={false} />)
+    render(<ReactSpreadsheetImportDynamicExtension {...mockRsiValues} dateFormat="yyyy/mm/dd" parseRaw={false} />)
 
     const uploader = screen.getByTestId("rsi-dropzone")
     fireEvent.drop(uploader, {
@@ -169,7 +169,7 @@ describe("Select header step tests", () => {
   })
 
   test("dateFormat property should be applied to dates read from xlsx files", async () => {
-    render(<ReactSpreadsheetImport {...mockRsiValues} dateFormat="yyyy/mm/dd" />)
+    render(<ReactSpreadsheetImportDynamicExtension {...mockRsiValues} dateFormat="yyyy/mm/dd" />)
     const uploader = screen.getByTestId("rsi-dropzone")
     const data = readFileSync(__dirname + "/../../../../static/Workbook2.xlsx")
     fireEvent.drop(uploader, {
@@ -192,7 +192,7 @@ describe("Select header step tests", () => {
       const selectHeaderStepHook = jest.fn(async (headerValues, data) => {
         return { headerValues, data }
       })
-      render(<ReactSpreadsheetImport {...mockRsiValues} selectHeaderStepHook={selectHeaderStepHook} />)
+      render(<ReactSpreadsheetImportDynamicExtension {...mockRsiValues} selectHeaderStepHook={selectHeaderStepHook} />)
       const uploader = screen.getByTestId("rsi-dropzone")
       const data = readFileSync(__dirname + "/../../../../static/TrailingCellsWorkbook.xlsx")
       fireEvent.drop(uploader, {

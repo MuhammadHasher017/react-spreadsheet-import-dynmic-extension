@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
 import { render } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { ReactSpreadsheetImport } from "../ReactSpreadsheetImport"
+import { ReactSpreadsheetImportDynamicExtension } from "../ReactSpreadsheetImport"
 import { mockRsiValues } from "../stories/mockRsiValues"
 
 test("Close modal", async () => {
@@ -10,7 +10,7 @@ test("Close modal", async () => {
     isOpen = !isOpen
   })
   const { getByText, getByLabelText } = render(
-    <ReactSpreadsheetImport {...mockRsiValues} onClose={onClose} isOpen={isOpen} />,
+    <ReactSpreadsheetImportDynamicExtension {...mockRsiValues} onClose={onClose} isOpen={isOpen} />,
   )
 
   const closeButton = getByLabelText("Close modal")
