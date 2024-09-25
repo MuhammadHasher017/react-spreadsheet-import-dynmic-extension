@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
 import { render, waitFor, screen, act } from "@testing-library/react"
 import { ValidationStep } from "../ValidationStep"
-import { defaultRSIProps, defaultTheme } from "../../../ReactSpreadsheetImport"
+import { defaultRSIProps, defaultTheme } from "../../../ReactSpreadsheetImportDynamicExtension"
 import { Providers } from "../../../components/Providers"
 import { ModalWrapper } from "../../../components/ModalWrapper"
 import userEvent from "@testing-library/user-event"

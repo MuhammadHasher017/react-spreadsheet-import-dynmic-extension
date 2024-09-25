@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
 import { render } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { ReactSpreadsheetImportDynamicExtension } from "../ReactSpreadsheetImport"
+import { ReactSpreadsheetImportDynamicExtension } from "../ReactSpreadsheetImportDynamicExtension"
 import { mockRsiValues } from "../stories/mockRsiValues"
 
 test("Close modal", async () => {

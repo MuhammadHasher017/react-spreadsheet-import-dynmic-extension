@@ -1,4 +1,4 @@
-import { ReactSpreadsheetImportDynamicExtension } from "../ReactSpreadsheetImport"
+import { ReactSpreadsheetImportDynamicExtension } from "../ReactSpreadsheetImportDynamicExtension"
 import { Box, Link, Code, Button, useDisclosure } from "@chakra-ui/react"
 import { mockRsiValues } from "./mockRsiValues"
 import { useState } from "react"

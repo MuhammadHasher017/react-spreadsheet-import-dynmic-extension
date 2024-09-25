@@ -1,9 +1,9 @@
-<h1 align="center">RSI react-spreadsheet-import-dynamic-extension ⚡️</h1>
+<h1 align="center">RSI react-spreadsheet-import-dynamic-extension-dynamic-extension ⚡️</h1>
 
 <div align="center">
   
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/UgnisSoftware/react-spreadsheet-import/test.yaml)
-![GitHub](https://img.shields.io/github/license/UgnisSoftware/react-spreadsheet-import) [![npm](https://img.shields.io/npm/v/react-spreadsheet-import)](https://www.npmjs.com/package/react-spreadsheet-import)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/UgnisSoftware/react-spreadsheet-import-dynamic-extension/test.yaml)
+![GitHub](https://img.shields.io/github/license/UgnisSoftware/react-spreadsheet-import-dynamic-extension) [![npm](https://img.shields.io/npm/v/react-spreadsheet-import-dynamic-extension)](https://www.npmjs.com/package/react-spreadsheet-import-dynamic-extension)
   
 </div>
 <br />
@@ -16,7 +16,7 @@ A component used for importing XLS / XLSX / CSV documents built with [**Chakra U
 - 🧪 UI for column mapping
 - ✏ UI for validating and editing data
 
-✨ [**Demo**](https://ugnissoftware.github.io/react-spreadsheet-import/iframe.html?id=react-spreadsheet-import--basic&args=&viewMode=story) ✨
+✨ [**Demo**](https://ugnissoftware.github.io/react-spreadsheet-import-dynamic-extension/iframe.html?id=react-spreadsheet-import-dynamic-extension--basic&args=&viewMode=story) ✨
 <br />
 
 ## Features
@@ -37,13 +37,13 @@ We provide full figma designs. You can copy the designs
 ## Getting started
 
 ```sh
-npm i react-spreadsheet-import
+npm i react-spreadsheet-import-dynamic-extension-dynamic-extension
 ```
 
 Using the component: (it's up to you when the flow is open and what you do on submit with the imported data)
 
 ```tsx
-import { ReactSpreadsheetImportDynamicExtension } from "react-spreadsheet-import";
+import { ReactSpreadsheetImportDynamicExtension } from "react-spreadsheet-import-dynamic-extension";
 
 <ReactSpreadsheetImportDynamicExtension isOpen={isOpen} onClose={onClose} onSubmit={onSubmit} fields={fields} />
 ```
@@ -163,7 +163,7 @@ In rare case when you need to skip the beginning of the flow, you can start the 
 Example:
 
 ```tsx
-import { ReactSpreadsheetImportDynamicExtension, StepType } from "react-spreadsheet-import";
+import { ReactSpreadsheetImportDynamicExtension, StepType } from "react-spreadsheet-import-dynamic-extension";
 
 <ReactSpreadsheetImportDynamicExtension
   initialStepState={{
@@ -215,7 +215,7 @@ Common date-time formats can be viewed [here](https://docs.sheetjs.com/docs/csf/
 
 ### Customising styles (colors, fonts)
 
-You can see default theme we use [here](https://github.com/UgnisSoftware/react-spreadsheet-import/blob/master/src/theme.ts). Your override should match this object's structure.
+You can see default theme we use [here](https://github.com/UgnisSoftware/react-spreadsheet-import-dynamic-extension/blob/master/src/theme.ts). Your override should match this object's structure.
 
 There are 3 ways you can style the component:
 
@@ -309,11 +309,11 @@ You can change any text in the flow:
 />
 ```
 
-You can see all the translation keys [here](https://github.com/UgnisSoftware/react-spreadsheet-import/blob/master/src/translationsRSIProps.ts)
+You can see all the translation keys [here](https://github.com/UgnisSoftware/react-spreadsheet-import-dynamic-extension/blob/master/src/translationsRSIProps.ts)
 
 ## VS other libraries
 
-Flatfile vs react-spreadsheet-import and Dromo vs react-spreadsheet-import:
+Flatfile vs react-spreadsheet-import-dynamic-extension and Dromo vs react-spreadsheet-import-dynamic-extension:
 
 |                                | RSI            | Flatfile    | Dromo       |
 | ------------------------------ | -------------- | ----------- | ----------- |

@@ -1,7 +1,7 @@
 import { editableTableInitialData, mockRsiValues } from "../../../stories/mockRsiValues"
 import { ValidationStep } from "../ValidationStep"
 import { Providers } from "../../../components/Providers"
-import { defaultTheme } from "../../../ReactSpreadsheetImport"
+import { defaultTheme } from "../../../ReactSpreadsheetImportDynamicExtension"
 import { ModalWrapper } from "../../../components/ModalWrapper"
 import { addErrorsAndRunHooks } from "../utils/dataMutations"
 

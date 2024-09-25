@@ -1,5 +1,5 @@
 import type { RsiProps } from "../types"
-import { defaultRSIProps } from "../ReactSpreadsheetImport"
+import { defaultRSIProps } from "../ReactSpreadsheetImportDynamicExtension"
 
 const fields = [
   {

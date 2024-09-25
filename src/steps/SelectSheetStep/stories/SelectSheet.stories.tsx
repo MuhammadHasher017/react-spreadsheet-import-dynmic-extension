@@ -1,4 +1,4 @@
-import { defaultTheme } from "../../../ReactSpreadsheetImport"
+import { defaultTheme } from "../../../ReactSpreadsheetImportDynamicExtension"
 import { SelectSheetStep } from "../SelectSheetStep"
 import { mockRsiValues } from "../../../stories/mockRsiValues"
 import { Providers } from "../../../components/Providers"

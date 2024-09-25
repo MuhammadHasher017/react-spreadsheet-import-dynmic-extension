@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
 import { render, fireEvent, waitFor, screen } from "@testing-library/react"
 import { UploadStep } from "../UploadStep"
-import { defaultTheme, ReactSpreadsheetImportDynamicExtension } from "../../../ReactSpreadsheetImport"
+import { defaultTheme, ReactSpreadsheetImportDynamicExtension } from "../../../ReactSpreadsheetImportDynamicExtension"
 import { mockRsiValues } from "../../../stories/mockRsiValues"
 import { Providers } from "../../../components/Providers"
 import { ModalWrapper } from "../../../components/ModalWrapper"

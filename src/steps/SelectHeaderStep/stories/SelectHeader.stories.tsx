@@ -2,7 +2,7 @@ import { headerSelectionTableFields, mockRsiValues } from "../../../stories/mock
 import { SelectHeaderStep } from "../SelectHeaderStep"
 import { Providers } from "../../../components/Providers"
 import { ModalWrapper } from "../../../components/ModalWrapper"
-import { defaultTheme } from "../../../ReactSpreadsheetImport"
+import { defaultTheme } from "../../../ReactSpreadsheetImportDynamicExtension"
 export default {
   title: "Select Header Step",
   parameters: {
