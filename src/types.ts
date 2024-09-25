@@ -50,9 +50,9 @@ export type RsiProps<T extends string> = {
   // Use for right-to-left (RTL) support
   rtl?: boolean
   // Title for the import modal
-  title: string
+  title?: string
   // Accepted file types for upload
-  acceptedFiles: (".xlsx" | ".xls" | ".csv")[]
+  acceptedFiles?: (".xlsx" | ".xls" | ".csv")[]
 }
 
 export type RawData = Array<string | undefined>
