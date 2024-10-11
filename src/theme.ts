@@ -306,6 +306,47 @@ export const themeOverrides = {
         } as ChakraStylesConfig<SelectOption>,
       },
     },
+    ImportModeStep: {
+      baseStyle: {
+        heading: {
+          color: "textColor",
+          fontSize: "3xl",
+        },
+        select: {
+          valueContainer: (provided) => ({
+            ...provided,
+            py: 0,
+            px: 1.5,
+          }),
+          inputContainer: (provided) => ({ ...provided, py: 0 }),
+          control: (provided) => ({ ...provided, border: "none" }),
+          input: (provided) => ({ ...provided, color: "textColor" }),
+          menu: (provided) => ({
+            ...provided,
+            p: 0,
+            mt: 0,
+          }),
+          menuList: (provided) => ({
+            ...provided,
+            bg: "background",
+            borderColor: "border",
+          }),
+          option: (provided, state) => ({
+            ...provided,
+            color: "textColor",
+            bg: state.isSelected || state.isFocused ? "highlight" : "background",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "block",
+            whiteSpace: "nowrap",
+          }),
+          noOptionsMessage: (provided) => ({
+            ...provided,
+            color: "inactiveColor",
+          }),
+        } as ChakraStylesConfig<SelectOption>,
+      },
+    },
     MatchIcon: MatchIconTheme,
     Steps: StepsComponent,
     Modal: {

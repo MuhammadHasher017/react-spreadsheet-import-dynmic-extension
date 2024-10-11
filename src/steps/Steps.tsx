@@ -14,9 +14,7 @@ export const Steps = () => {
 
   const initialStep = stepTypeToStepIndex(initialStepState?.type)
 
-  const { nextStep, activeStep, setStep } = useSteps({
-    initialStep,
-  })
+  const { nextStep, activeStep, setStep } = useSteps({ initialStep })
 
   const [state, setState] = useState<StepState>(initialStepState || { type: StepType.upload })
 
@@ -32,9 +30,7 @@ export const Steps = () => {
     setStep(stepIndex)
   }
 
-  const onBack = () => {
-    onClickStep(Math.max(activeStep - 1, 0))
-  }
+  const onBack = () => onClickStep(Math.max(activeStep - 1, 0))
 
   const onNext = (v: StepState) => {
     history.current.push(state)
