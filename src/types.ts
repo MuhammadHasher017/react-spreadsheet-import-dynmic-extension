@@ -22,7 +22,7 @@ export type RsiProps<T extends string> = {
   // Runs after column matching and on entry change
   tableHook?: TableHook<T>
   // Function called after user finishes the flow. You can return a promise that will be awaited.
-  onSubmit: (data: Result<T>, file: File) => void | Promise<any>
+  onSubmit: (mode: string, data: Result<T>, file: File) => void | Promise<any>
   // Allows submitting with errors. Default: true
   allowInvalidSubmit?: boolean
   // Enable navigation in stepper component and show back button. Default: false
@@ -33,7 +33,7 @@ export type RsiProps<T extends string> = {
   customTheme?: object
   // Specifies maximum number of rows for a single import
   maxRecords?: number
-  // Maximum upload filesize (in bytes)
+  // Maximum upload file size (in bytes)
   maxFileSize?: number
   // Automatically map imported headers to specified fields if possible. Default: true
   autoMapHeaders?: boolean

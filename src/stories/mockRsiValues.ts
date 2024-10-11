@@ -82,9 +82,9 @@ const fields = [
   },
 ] as const
 
-const mockComponentBehaviourForTypes = <T extends string>(props: RsiProps<T>) => props
+const mockComponentBehaviorForTypes = <T extends string>(props: RsiProps<T>) => props
 
-export const mockRsiValues = mockComponentBehaviourForTypes({
+export const mockRsiValues = mockComponentBehaviorForTypes({
   ...defaultRSIProps,
   fields: fields,
   onSubmit: (data) => {
@@ -92,8 +92,8 @@ export const mockRsiValues = mockComponentBehaviourForTypes({
   },
   isOpen: true,
   onClose: () => {},
-  title: "Upload .xlsx file",
-  acceptedFiles: [".xlsx"],
+  title: "Upload files",
+  acceptedFiles: [".xlsx", ".xls", ".csv"],
   // uploadStepHook: async (data) => {
   //   await new Promise((resolve) => {
   //     setTimeout(() => resolve(data), 4000)

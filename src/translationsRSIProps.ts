@@ -42,6 +42,15 @@ export const translations = {
   },
   validationStep: {
     title: "Validate data",
+    nextButtonTitle: "Next",
+    backButtonTitle: "Back",
+    noRowsMessage: "No data found",
+    noRowsMessageWhenFiltered: "No data containing errors",
+    discardButtonTitle: "Discard selected rows",
+    filterSwitchTitle: "Show only rows with errors",
+  },
+  importModeStep: {
+    title: "Import Mode",
     nextButtonTitle: "Confirm",
     backButtonTitle: "Back",
     noRowsMessage: "No data found",

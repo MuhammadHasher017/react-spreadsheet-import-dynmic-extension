@@ -21,8 +21,8 @@ export const defaultRSIProps: Partial<RsiProps<any>> = {
   matchColumnsStepHook: async (table) => table,
   dateFormat: "yyyy-mm-dd", // ISO 8601,
   parseRaw: true,
-  title: "Upload .xlsx file",
-  acceptedFiles: [".xlsx"],
+  title: "Upload files",
+  acceptedFiles: [".xlsx", ".csv", ".xls"],
 } as const
 
 export const ReactSpreadsheetImportDynamicExtension = <T extends string>(propsWithoutDefaults: RsiProps<T>) => {
