@@ -6,7 +6,6 @@ import { Meta } from "../ValidationStep/types"
 import { Data } from "src/types"
 import { themeOverrides } from "src/theme"
 import { ImportMode } from "../UploadFlow"
-import { ErrorInfo } from "./types"
 
 type Props<T extends string> = {
   data: (Data<T> & Meta)[]
