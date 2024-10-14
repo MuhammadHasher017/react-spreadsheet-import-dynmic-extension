@@ -98,11 +98,15 @@ export const ValidationStep = <T extends string>({ initialData, file, onNext, on
     setLoading(false)
   }
 
+  const submitInvalid = () => {
+    onNext?.({ type: StepType.importMode, mode: ImportMode.append, data, file })
+  }
+
   const columns = useMemo(() => generateColumns(fields), [fields])
 
   return (
     <>
-      <SubmitDataAlert isOpen={showSubmitAlert} onClose={() => setShowSubmitAlert(false)} onConfirm={onContinue} />
+      <SubmitDataAlert isOpen={showSubmitAlert} onClose={() => setShowSubmitAlert(false)} onConfirm={submitInvalid} />
       <ModalBody pb={0}>
         <Box display="flex" justifyContent="space-between" alignItems="center" mb="2rem" flexWrap="wrap" gap="8px">
           <Heading sx={styles.heading}>{translations.validationStep.title}</Heading>
