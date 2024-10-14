@@ -8,6 +8,10 @@
 </div>
 <br />
 
+[**NOTE**]("This is the actual package link. I do some changes based on my project requirements")
+
+ [**Original Package**](https://www.npmjs.com/package/react-spreadsheet-import)
+
 A component used for importing XLS / XLSX / CSV documents built with [**Chakra UI**](https://chakra-ui.com). Import flow combines:
 
 - 📥 Uploader
