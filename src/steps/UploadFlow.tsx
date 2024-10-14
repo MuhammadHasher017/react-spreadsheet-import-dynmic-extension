@@ -11,6 +11,13 @@ import { MatchColumnsStep } from "./MatchColumnsStep/MatchColumnsStep"
 import { exceedsMaxRecords } from "../utils/exceedsMaxRecords"
 import { useRsi } from "../hooks/useRsi"
 import type { RawData } from "../types"
+import { ImportModeStep } from "./ImportModeStep/ImportModeStep"
+
+export enum ImportMode {
+  append = "append",
+  update = "update",
+  appendUpdate = "append/update",
+}
 
 export enum StepType {
   upload = "upload",
@@ -18,6 +25,7 @@ export enum StepType {
   selectHeader = "selectHeader",
   matchColumns = "matchColumns",
   validateData = "validateData",
+  importMode = "importMode",
 }
 export type StepState =
   | {
@@ -39,6 +47,12 @@ export type StepState =
   | {
       type: StepType.validateData
       data: any[]
+    }
+  | {
+      type: StepType.importMode
+      mode: ImportMode
+      data: any[]
+      file: File
     }
 
 interface Props {
@@ -163,7 +177,9 @@ export const UploadFlow = ({ state, onNext, onBack }: Props) => {
         />
       )
     case StepType.validateData:
-      return <ValidationStep initialData={state.data} file={uploadedFile!} onBack={onBack} />
+      return <ValidationStep initialData={state.data} file={uploadedFile!} onNext={onNext} onBack={onBack} />
+    case StepType.importMode:
+      return <ImportModeStep data={state.data} file={state.file} onBack={onBack} />
     default:
       return <Progress isIndeterminate />
   }

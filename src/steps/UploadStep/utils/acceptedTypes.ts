@@ -19,6 +19,5 @@ export function getAcceptedTypes(inputExtensions: string[]): AcceptedTypes {
     }
   })
 
-  console.log("object", result)
   return result
 }
