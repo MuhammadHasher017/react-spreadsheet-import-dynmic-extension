@@ -52,7 +52,7 @@ export type RsiProps<T extends string> = {
   // Title for the import modal
   title?: string
   // Accepted file types for upload
-  acceptedFiles?: (".xlsx" | ".xls" | ".csv")[]
+  acceptedFiles?:readonly (".xlsx" | ".xls" | ".csv")[]
 }
 
 export type RawData = Array<string | undefined>

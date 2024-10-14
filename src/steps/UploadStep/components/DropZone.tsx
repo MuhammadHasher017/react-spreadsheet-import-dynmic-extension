@@ -23,7 +23,7 @@ export const DropZone = ({ onContinue, isLoading }: DropZoneProps) => {
     noKeyboard: true,
     maxFiles: 1,
     maxSize: maxFileSize,
-    accept: getAcceptedTypes(acceptedFiles),
+    accept: getAcceptedTypes(acceptedFiles.slice()),
     onDropRejected: (fileRejections) => {
       setLoading(false)
       fileRejections.forEach((fileRejection) => {
