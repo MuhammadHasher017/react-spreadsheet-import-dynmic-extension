@@ -53,10 +53,19 @@ export const translations = {
     title: "Import Mode",
     nextButtonTitle: "Confirm",
     backButtonTitle: "Back",
-    noRowsMessage: "No data found",
-    noRowsMessageWhenFiltered: "No data containing errors",
-    discardButtonTitle: "Discard selected rows",
-    filterSwitchTitle: "Show only rows with errors",
+    fields: {
+      radio: {
+        label: {
+          append: "Append: Add new records to the destination table",
+          update: "Update: Modify existing records in the destination table with matching source records",
+          appendUpdate: "Append/Update: Update records if they exist in the destination, otherwise add them",
+        },
+      },
+      select: {
+        label: "Select Primary Key Column",
+        placeholder: "Choose the column(s) to be used as the unique key (e.g., EmployeeID, Email).",
+      },
+    },
   },
   alerts: {
     confirmClose: {

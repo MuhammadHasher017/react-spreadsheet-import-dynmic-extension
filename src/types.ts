@@ -22,7 +22,13 @@ export type RsiProps<T extends string> = {
   // Runs after column matching and on entry change
   tableHook?: TableHook<T>
   // Function called after user finishes the flow. You can return a promise that will be awaited.
-  onSubmit: (mode: ImportMode, data: Result<T>, file: File) => void | Promise<any>
+  onSubmit: (params: {
+    importMode: ImportMode // Ensure ImportMode is imported and defined correctly
+    primaryKeys: string[] // Array of strings representing primary keys
+    data: Result<T> // The data type you are expecting (make sure Result<T> is defined)
+    file: File // File object representing the uploaded file
+  }) => void | Promise<any>
+
   // Allows submitting with errors. Default: true
   allowInvalidSubmit?: boolean
   // Enable navigation in stepper component and show back button. Default: false
@@ -52,7 +58,7 @@ export type RsiProps<T extends string> = {
   // Title for the import modal
   title?: string
   // Accepted file types for upload
-  acceptedFiles?:readonly (".xlsx" | ".xls" | ".csv")[]
+  acceptedFiles?: readonly (".xlsx" | ".xls" | ".csv")[]
 }
 
 export type RawData = Array<string | undefined>
