@@ -1,6 +1,6 @@
 {
   "name": "react-spreadsheet-import-dynamic-extension",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "description": "React spreadsheet import for xlsx and csv files with column matching and validation add the functionality to add custom extensions added new step in this.",
   "main": "./dist-commonjs/index.js",
   "module": "./dist/index.js",
