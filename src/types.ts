@@ -83,6 +83,9 @@ export type Field<T extends string> = {
   fieldType: Checkbox | Select | Input
   // UI-facing values shown to user as field examples pre-upload phase
   example?: string
+
+  // Field is used as primary key
+  isPrimaryKey?: boolean
 }
 
 export type Checkbox = {
