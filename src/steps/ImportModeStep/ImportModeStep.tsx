@@ -11,6 +11,7 @@ import {
   CheckboxGroup,
   Checkbox,
   Stack,
+  Flex,
 } from "@chakra-ui/react"
 import { ContinueButton } from "../../components/ContinueButton"
 import { useRsi } from "../../hooks/useRsi"
@@ -20,6 +21,7 @@ import { themeOverrides } from "src/theme"
 import { ImportMode } from "../UploadFlow"
 import { DataObject } from "./types"
 import { startCase } from "lodash"
+import { MdWarning } from "react-icons/md"
 
 type Props<T extends string> = {
   data: (Data<T> & Meta)[]
@@ -28,7 +30,7 @@ type Props<T extends string> = {
 }
 
 export const ImportModeStep = <T extends string>({ data, file, onBack }: Props<T>) => {
-  const { translations, onSubmit, onClose } = useRsi<T>()
+  const { translations, fields, onSubmit, onClose } = useRsi<T>()
   const styles = useStyleConfig(
     "ImportModeStep",
   ) as (typeof themeOverrides)["components"]["ImportModeStep"]["baseStyle"]
@@ -39,31 +41,28 @@ export const ImportModeStep = <T extends string>({ data, file, onBack }: Props<T
 
   const toast = useToast()
 
-  const submitData = async () => {
-    const calculatedData = data.reduce(
-      (acc, value) => {
-        const { __index, __errors, ...values } = value
-        if (__errors) {
-          for (const key in __errors) {
-            if (__errors[key].level === "error") {
-              acc.invalidData.push(values as unknown as Data<T>)
-              return acc
-            }
-          }
-        }
-        acc.validData.push(values as unknown as Data<T>)
-        return acc
-      },
-      { validData: [] as Data<T>[], invalidData: [] as Data<T>[], all: data },
-    )
+  const handleFormSubmission = async () => {
+    if (selectedMode !== ImportMode.append && selectedColumns.length === 0) {
+      toast({
+        status: "error",
+        variant: "left-accent",
+        position: "bottom-left",
+        title: translations.alerts.primaryKeys.title,
+        description: translations.alerts.primaryKeys.description,
+        isClosable: true,
+      })
+      return
+    }
+
+    const processedData = processData(data)
 
     setSubmitting(true)
     try {
       await onSubmit({
-        importMode: selectedMode, // The selected import mode
-        primaryKeys: selectedColumns, // The selected columns
-        data: calculatedData, // The calculated data that you processed
-        file, // The file being processed
+        importMode: selectedMode,
+        primaryKeys: selectedColumns,
+        data: processedData,
+        file,
       })
       onClose()
     } catch (err: any) {
@@ -72,7 +71,7 @@ export const ImportModeStep = <T extends string>({ data, file, onBack }: Props<T
         variant: "left-accent",
         position: "bottom-left",
         title: translations.alerts.submitError.title,
-        description: err?.message || translations.alerts.submitError.defaultMessage,
+        description: err.message || translations.alerts.submitError.defaultMessage,
         isClosable: true,
       })
     } finally {
@@ -80,34 +79,35 @@ export const ImportModeStep = <T extends string>({ data, file, onBack }: Props<T
     }
   }
 
-  const onConfirm = async () => {
-    setSubmitting(true)
-    await submitData()
+  const processData = (data: (Data<T> & Meta)[]) => {
+    return data.reduce(
+      (acc, item) => {
+        const { __errors, __index, ...values } = item
+
+        if (__errors && Object.values(__errors).some((error) => error.level === "error")) {
+          acc.invalidData.push(values as unknown as Data<T>)
+        } else {
+          acc.validData.push(values as unknown as Data<T>)
+        }
+
+        return acc
+      },
+      { validData: [] as Data<T>[], invalidData: [] as Data<T>[], all: data },
+    )
   }
 
-  const getFirstObjectKeys = (data: DataObject[]): string[] => {
-    // Check if the data array is valid and has at least one object
-    if (!Array.isArray(data) || data.length === 0) {
-      return [] // Return an empty array if data is empty or not an array
-    }
-
-    const firstObject = data[0]
-
-    // Ensure firstObject is indeed an object
-    if (typeof firstObject !== "object" || firstObject === null) {
-      return [] // Return an empty array if firstObject is not an object
-    }
-
-    return Object.keys(firstObject).filter((key) => key !== "__errors" && key !== "__index")
+  const getPrimaryKeys = (): string[] => {
+    // Filter fields to find those marked as primary keys and map to their keys
+    return fields
+      .filter((field) => field.isPrimaryKey) // Filter to get only primary key fields
+      .map((field) => field.key) // Map to get the keys of those fields
   }
 
-  const keys = getFirstObjectKeys(data)
+  // Get primary keys
+  const primaryKeys = getPrimaryKeys()
 
-  // Effect to clear selectedColumns when the append mode is selected
   useEffect(() => {
-    if (selectedMode === ImportMode.append) {
-      setSelectedColumns([]) // Clear selected columns if mode is "append"
-    }
+    if (selectedMode === ImportMode.append) setSelectedColumns([])
   }, [selectedMode])
 
   return (
@@ -120,32 +120,52 @@ export const ImportModeStep = <T extends string>({ data, file, onBack }: Props<T
         <Box mb={6}>
           <RadioGroup onChange={(value: string) => setSelectedMode(value as ImportMode)} value={selectedMode}>
             <Box display="flex" flexDirection="column" gap="12px">
-              <Radio value="append">{translations.importModeStep.fields.radio.label.append}</Radio>
-              <Radio value="update">{translations.importModeStep.fields.radio.label.update}</Radio>
-              <Radio value="append/update">{translations.importModeStep.fields.radio.label.appendUpdate}</Radio>
+              <Radio value={ImportMode.append}>{translations.importModeStep.fields.radio.label.append}</Radio>
+              <Radio value={ImportMode.update}>{translations.importModeStep.fields.radio.label.update}</Radio>
+              <Radio value={ImportMode.appendUpdate}>
+                {translations.importModeStep.fields.radio.label.appendUpdate}
+              </Radio>
             </Box>
           </RadioGroup>
         </Box>
 
-        <Box display="flex" flexDirection="column" gap="12px" mb={6} hidden={selectedMode === "append"}>
-          <Text fontWeight="bold" fontSize="lg">
-            {translations.importModeStep.fields.select.label}
-          </Text>
-          <CheckboxGroup value={selectedColumns} onChange={(value: string[]) => setSelectedColumns(value)}>
-            <Stack spacing={[1, 5]} direction={["column", "row"]}>
-              {keys.map((key) => (
-                <Checkbox key={key} value={key}>
-                  {startCase(key)}
-                </Checkbox>
-              ))}
-            </Stack>
-          </CheckboxGroup>
-        </Box>
+        {selectedMode !== ImportMode.append && (
+          <Box display="flex" flexDirection="column" gap="12px" mb={6}>
+            <Text fontWeight="bold" fontSize="lg">
+              {translations.importModeStep.fields.checkBox.label}
+            </Text>
+            {primaryKeys.length > 0 ? (
+              <CheckboxGroup value={selectedColumns} onChange={(value: string[]) => setSelectedColumns(value)}>
+                <Stack spacing={[1, 5]} direction={["column", "row"]}>
+                  {primaryKeys.map((key) => (
+                    <Checkbox key={key} value={key}>
+                      {startCase(key)}
+                    </Checkbox>
+                  ))}
+                </Stack>
+              </CheckboxGroup>
+            ) : (
+              <Flex
+                alignItems="center"
+                bg="yellow.50"
+                p={4}
+                borderRadius="md"
+                border="1px solid"
+                borderColor="yellow.300"
+              >
+                <MdWarning color="yellow.500" size={20} style={{ marginRight: "8px" }} />
+                <Text color="yellow.700" fontWeight="medium">
+                  {translations.importModeStep.message}
+                </Text>
+              </Flex>
+            )}
+          </Box>
+        )}
       </ModalBody>
 
       <ContinueButton
         isLoading={isSubmitting}
-        onContinue={onConfirm}
+        onContinue={handleFormSubmission}
         onBack={onBack}
         title={translations.importModeStep.nextButtonTitle}
         backTitle={translations.importModeStep.backButtonTitle}

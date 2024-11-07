@@ -61,11 +61,12 @@ export const translations = {
           appendUpdate: "Append/Update: Update records if they exist in the destination, otherwise add them",
         },
       },
-      select: {
+      checkBox: {
         label: "Select Primary Key Column",
         placeholder: "Choose the column(s) to be used as the unique key (e.g., EmployeeID, Email).",
       },
     },
+    message: "No primary keys available for selection. Please ensure the data contains at least one unique identifier.",
   },
   alerts: {
     confirmClose: {
@@ -92,8 +93,10 @@ export const translations = {
       cancelButtonTitle: "Cancel",
       continueButtonTitle: "Continue",
     },
-    toast: {
-      error: "Error",
+    toast: { error: "Error" },
+    primaryKeys: {
+      title: "Select Unique Identifier(s)",
+      description: "Please choose one or more columns to serve as unique identifiers, such as EmployeeID or Email.",
     },
   },
 }
