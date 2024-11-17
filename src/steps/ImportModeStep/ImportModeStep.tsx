@@ -121,10 +121,10 @@ export const ImportModeStep = <T extends string>({ data, file, onBack }: Props<T
           <RadioGroup onChange={(value: string) => setSelectedMode(value as ImportMode)} value={selectedMode}>
             <Box display="flex" flexDirection="column" gap="12px">
               <Radio value={ImportMode.append}>{translations.importModeStep.fields.radio.label.append}</Radio>
-              <Radio value={ImportMode.update}>{translations.importModeStep.fields.radio.label.update}</Radio>
+              {/* <Radio value={ImportMode.update}>{translations.importModeStep.fields.radio.label.update}</Radio>
               <Radio value={ImportMode.appendUpdate}>
                 {translations.importModeStep.fields.radio.label.appendUpdate}
-              </Radio>
+              </Radio> */}
             </Box>
           </RadioGroup>
         </Box>
